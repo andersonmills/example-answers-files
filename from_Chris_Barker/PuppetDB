@@ -1,0 +1,48 @@
+# Set the Console's hostname
+Q_CONSOLE="console"
+# Set the PuppetDB servers hostname
+Q_PUPPETDB="puppetdb"
+# Set the Puppet Master server's hostname
+Q_MASTER="master"
+# Provide the Database Passwords
+# generate them here https://www.random.org/passwords/?num=4&len=24&format=html&rnd=new
+Q_DBROOTPWD="DB-ROOT-PASSWORD"
+# Also Copy these to the Console servers answer file
+Q_CONSOLEPWD="CONSOLE-PASSWORD"
+Q_CONSOLEAUTHPWD="CONSOLE-AUTH-PASSWORD"
+Q_PUPPETDBPWD="PUPPETDB-PASSWORD"
+ 
+ 
+q_all_in_one_install=n
+q_backup_and_purge_old_configuration=n
+q_backup_and_purge_old_database_directory=n
+q_database_host=$Q_PUPPETDB
+q_database_install=y
+q_database_port=5432
+q_database_root_password=$Q_DBROOTPWD
+q_database_root_user=pe-postgres
+q_fail_on_unsuccessful_master_lookup=y
+q_install=y
+q_pe_database=y
+q_puppet_cloud_install=n
+q_puppet_enterpriseconsole_auth_database_name=console_auth
+q_puppet_enterpriseconsole_auth_database_password=$Q_CONSOLEAUTHPWD
+q_puppet_enterpriseconsole_auth_database_user=console_auth
+q_puppet_enterpriseconsole_database_name=console
+q_puppet_enterpriseconsole_database_password=$Q_CONSOLEPWD
+q_puppet_enterpriseconsole_database_user=console
+q_puppet_enterpriseconsole_install=n
+q_puppet_symlinks_install=y
+q_puppetagent_certname=$Q_PUPPETDB
+q_puppetagent_install=y
+q_puppetagent_server=$Q_MASTER
+q_puppetdb_database_name=pe-puppetdb
+q_puppetdb_database_password=$Q_PUPPETDBPWD
+q_puppetdb_database_user=pe-puppetdb
+q_puppetdb_hostname=$Q_PUPPETDB
+q_puppetdb_install=y
+q_puppetdb_port=8081
+q_puppetmaster_certname=$Q_MASTER
+q_puppetmaster_install=n
+q_run_updtvpkg=n
+q_vendor_packages_install=y
