@@ -1,4 +1,3 @@
-
 #####################################################################
 # TRILITHIC PUPPETDB INSTALL
 
@@ -28,9 +27,6 @@ q_puppetdb_install=y
 q_puppet_enterpriseconsole_install=n
 # Y or N — Whether to install the console role.
 
-q_puppetagent_install=y
-# Y or N — Whether to install the puppet agent role.
-
 q_puppet_cloud_install=n
 # Y or N — Whether to install the cloud provisioner role.
 
@@ -48,7 +44,7 @@ q_fail_on_unsuccessful_master_lookup=y
 #Y or N — Whether to quit the install if the puppet master cannot be reached.
 
 ### REMARKABLE
-#q_skip_master_verification
+q_skip_master_verification=n
 #Y or N — This is a silent install option, default is N. When set to Y, the installer will skip master verification which allows the user to deploy agents when they know the master won’t be available.
 
 #--------------------------------------------------------------------
@@ -66,70 +62,28 @@ q_puppetmaster_certname=pe-master.localdomain
 # String — Valid DNS names at which the puppet master can be reached. Must be a comma-separated list. In a normal installation, defaults to <hostname>,<hostname.domain>,puppet,puppet.<domain>.
 
 ### REMARKABLE
-# q_puppetmaster_enterpriseconsole_hostname=localhost
+# q_puppetmaster_enterpriseconsole_hostname=pe-console.localdomain
 # String — The hostname of the server running the console role. Only needed if you are not installing the console role on the puppet master server.
 
-### REMARKABLE
-# q_puppetmaster_enterpriseconsole_port=443
+q_puppetmaster_enterpriseconsole_port=443
 # Integer — The port on which to contact the console server. Only needed if you are not installing the console role on the puppet master server.
 
-### REMARKABLE
-#q_pe_check_for_updates
+q_pe_check_for_updates=n
 #y or n; MUST BE LOWERCASE — Whether to check for updates whenever the pe-httpd service restarts. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs’ servers. Specifically, it will transmit:
 #the IP address of the client
 #the type and version of the client’s OS
 #the installed version of PE
 #the number of nodes licensed and the number of nodes used
 #If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to n. You can also disable checking after installation by editing the /etc/puppetlabs/installer/answers.install file.
-#q_tarball_server
-#String — The location from which PE agent tarballs will be downloaded before installation. Note that agent tarballs are only available for certain operating systems. For details, see the PE installation instructions
 
-### REMARKABLE
-#q_disable_live_manangement
+q_disable_live_manangement=n
 #Y or N — Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade.
 
 q_pe_database=y
 # Y or N — Whether to have the Postgres server for the console installed by PE or to manage it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
 
-### REMARKABLE
-# q_puppet_enterpriseconsole_master_hostname=puppet.localdomain
-# String — The hostname of the server running the master role. Only needed if you are not installing the console role on the puppet master server.
-
-### REMARKABLE
-#q_puppet_enterpriseconsole_httpd_port=443
+q_puppet_enterpriseconsole_httpd_port=443
 # Integer — The port on which to serve the console. The default is port 443, which will allow access to the console from a web browser without manually specifying a port. If port 443 is not available, the installer will try port 3000, 3001, 3002, 3003, 3004, and 3005.
-
-### REMARKABLE
-# q_puppet_enterpriseconsole_auth_user_email=admin@example.com
-# String — The email address the console’s admin user will use to log in.
-
-### REMARKABLE
-# q_puppet_enterpriseconsole_auth_password=yetanotherstrongpassword
-# String — The password for the console’s admin user. Must be longer than eight characters.
-
-### REMARKABLE
-# q_puppet_enterpriseconsole_smtp_host=smtp.example.com
-# String – The SMTP server used to email account activation codes to new console users.
-
-### REMARKABLE
-# q_puppet_enterpriseconsole_smtp_port=25
-# Integer – The port to use when contacting the SMTP server.
-
-### REMARKABLE
-# q_puppet_enterpriseconsole_smtp_use_tls=n
-# Y or N – Whether to use TLS when contacting the SMTP server.
-
-### REMARKABLE
-# q_puppet_enterpriseconsole_smtp_user_auth=n
-# Y or N – Whether to authenticate to the SMTP server with a username and password.
-
-### REMARKABLE
-#q_puppet_enterpriseconsole_smtp_username=
-# String – The username to use when contacting the SMTP server. Only used when q_puppet_enterpriseconsole_smtp_user_auth is Y.
-
-### REMARKABLE
-#q_puppet_enterpriseconsole_smtp_password=
-# String – The password to use when contacting the SMTP server. Only used when q_puppet_enterpriseconsole_smtp_user_auth is Y.
 
 q_puppet_enterpriseconsole_database_name=console
 # String — The database the console will use. Note that if you are not installing the database support role, this database must already exist on the PostgreSQL server.
@@ -137,7 +91,7 @@ q_puppet_enterpriseconsole_database_name=console
 q_puppet_enterpriseconsole_database_user=console
 # String — The PostgreSQL user the console will use. Note that if you are not installing the database support role, this user must already exist on the PostgreSQL server and must be able to edit the console’s database.
 
-q_puppet_enterpriseconsole_database_password=anotherstrongpassword
+q_puppet_enterpriseconsole_database_password=strongpassword2025
 # String — The password for the console’s PostgreSQL user.
 
 q_puppet_enterpriseconsole_auth_database_name=console_auth
@@ -146,20 +100,16 @@ q_puppet_enterpriseconsole_auth_database_name=console_auth
 q_puppet_enterpriseconsole_auth_database_user=console_auth
 # String — The PostgreSQL user the console authentication will use. Note that if you are not installing the database support role, this user must already exist on the PostgreSQL server and must be able to edit the auth database.
 
-q_puppet_enterpriseconsole_auth_database_password=astrongpassword
+q_puppet_enterpriseconsole_auth_database_password=strongpassword1905
 # String — The password for the auth database’s PostgreSQL user.
 # If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to n. You can also disable checking after installation by editing the /etc/puppetlabs/installer/answers.install file.
 
-### REMARKABLE
-# q_public_hostname
+# q_public_hostname=
 # String — A publicly accessible hostname where the console can be accessed if the host name resolves to a private interface (e.g., Amazon EC2). This is set automatically by the installer on EC2 nodes, but can be set manually in environments with multiple hostnames.
 
 #--------------------------------------------------------------------
 # Database Support Answers
 # These answers are only needed if you are installing the database support role.
-
-q_database_host=pe-puppetdb.localdomain
-# String — The hostname of the server running the PostgreSQL server that supports the console.
 
 q_database_port=5432
 # Integer — The port where the PostgreSQL server that supports the console can be reached.
@@ -167,7 +117,7 @@ q_database_port=5432
 q_database_install=y
 # Y or N — Whether or not to install the PostgreSQL server that supports the console.
 
-q_database_root_password=astrongpass
+q_database_root_password=strongpassword6221
 # String — The password for the console’s PostgreSQL user.
 
 q_database_root_user=pe-postgres
@@ -176,7 +126,7 @@ q_database_root_user=pe-postgres
 q_puppetdb_database_name=pe-puppetdb
 # String — The database PuppetDB will use.
 
-q_puppetdb_database_password=onemorestrongpass
+q_puppetdb_database_password=strongpassword1748
 # String — The password for PuppetDB’s root user.
 
 q_puppetdb_database_user=pe-puppetdb
@@ -187,13 +137,3 @@ q_puppetdb_hostname=pe-puppetdb.localdomain
 
 q_puppetdb_port=8081
 # Integer — The port where the PuppetDB server can be reached.
-
-### REMARKABLE
-#q_puppetdb_plaintext_port
-Integer — The port on which PuppetDB accepts plain-text HTTP connections (default port is 8080).
-
-
-### REMARKABLE
-#q_backup_and_purge_old_configuration=n
-#q_backup_and_purge_old_database_directory=n
-#q_puppet_symlinks_install=y
